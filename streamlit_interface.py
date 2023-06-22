@@ -143,8 +143,8 @@ class knowledge_base_NLP():
         else:
             raw_text = self.raw_text
     
-        coref_text = coref(raw_text)._.resolved_text
-
+        #coref_text = coref(raw_text)._.resolved_text
+        coref_text = raw_text
 
         nlp = self.pretrained_model()  # Load the pretrained model
 
