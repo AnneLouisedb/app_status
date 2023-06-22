@@ -30,6 +30,8 @@ folder_name = "models/SKC_model_new"
 # Construct the full path to the folder
 folder_path = os.path.join(current_dir, folder_name)
 
+cc = coco.CountryConverter()
+
 def convert_to_iso3(location):
     return cc.convert(names=str(location), to='ISO3')
 
