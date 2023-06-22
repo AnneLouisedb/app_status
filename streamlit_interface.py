@@ -316,7 +316,7 @@ class knowledge_base_NLP():
                 relation_obj = None
                 relation_date_obj = None
 
-                for token in doc:
+                for token in sentence:
                     if token.text == obj:
                         object_token = token
                         break
