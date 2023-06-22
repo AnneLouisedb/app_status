@@ -410,6 +410,7 @@ class knowledge_base_NLP():
 
     # begin a streamlit app
 def app():
+    st.write(folder_path)
     """
     Function that creates the page, which is subdivided into horizontal boxes.
     """
