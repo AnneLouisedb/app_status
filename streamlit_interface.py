@@ -4,7 +4,7 @@ import io
 from spacy.tokens import Doc, Span
 from spacy.language import Language
 from spacy import displacy
-#import crosslingual_coreference
+import crosslingual_coreference
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 
 import re
