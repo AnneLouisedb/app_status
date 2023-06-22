@@ -126,7 +126,7 @@ class knowledge_base_NLP():
 
         base_model.add_pipe("ner", name="ner_weapons", source=ner_weapons)
         base_model.add_pipe("set_custom_norp", last=True)
-
+        
         return base_model
     
     # Define a custom rule-based component for tagging "firearm" as "WEAPON"
@@ -151,6 +151,10 @@ class knowledge_base_NLP():
         definite noun phrases, and other referring expressions to their corresponding entities.
         """
         coref = spacy.load('en_core_web_sm', disable=['ner', 'tagger', 'parser', 'attribute_ruler', 'lemmatizer'])
+
+        # Add neuralcoref to the pipeline
+        neuralcoref.add_to_pipe(coref)
+        
         #coref.add_pipe("xx_coref", config={"chunk_size": 2500, "chunk_overlap": 2, "device": self.DEVICE})
         
         # check if the input text is a web link
@@ -158,9 +162,10 @@ class knowledge_base_NLP():
             raw_text = self.kb_from_article(self.raw_text)
         else:
             raw_text = self.raw_text
-    
-        #coref_text = coref(raw_text)._.resolved_text
-        coref_text = raw_text
+            
+        # Resolve coreferences and get the resolved text
+        coref_text = coref(raw_text)._.coref_resolved
+        #coref_text = raw_text
 
         nlp = self.pretrained_model()  # Load the pretrained model
 
