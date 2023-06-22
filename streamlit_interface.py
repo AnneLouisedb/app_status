@@ -287,7 +287,7 @@ class knowledge_base_NLP():
             "relation_date_obj": [],
             "relation_date_subj": []}
 
-    
+        nlp = self.pretrained_model()
         for n,sentence in enumerate(self.coreffed_sents):
             lst_generators = list(textacy.extract.subject_verb_object_triples(sentence)) 
             for sent in lst_generators:
@@ -302,7 +302,7 @@ class knowledge_base_NLP():
 
                 # Extract NER labels for subject and object
                 #list(coref_doc.sents)
-                #doc = nlp(sentence.text)  # Process the sentence with spaCy
+                doc = nlp(sentence.text)  # Process the sentence with spaCy
                 
                 # Extract NER labels for subject and object
                 subj_labels = [token.ent_type_ for token in sent.subject if token.ent_type_]
@@ -316,7 +316,7 @@ class knowledge_base_NLP():
                 relation_obj = None
                 relation_date_obj = None
 
-                for token in sentence:
+                for token in doc:
                     if token.text == obj:
                         object_token = token
                         break
@@ -341,7 +341,7 @@ class knowledge_base_NLP():
                 relation_subj = None
                 relation_date_subj = None
 
-                for token in sentence:
+                for token in doc:
                     if token.text == subj:
                         subject_token = token
                         break
