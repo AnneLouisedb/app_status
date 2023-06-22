@@ -413,11 +413,6 @@ class knowledge_base_NLP():
 
     # begin a streamlit app
 def app():
-    st.write(current_dir)
-    st.write(folder_path)
-    """
-    Function that creates the page, which is subdivided into horizontal boxes.
-    """
     st.title('Monitor demo')
     user_input = st.text_input("Enter your text or url link:")
 
