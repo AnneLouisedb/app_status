@@ -17,6 +17,17 @@ from geopy.geocoders import Nominatim
 from newspaper import Article
 import streamlit as st
 
+import os
+
+# Get the directory path of the current script
+current_dir = os.path.dirname(os.path.abspath(__file__))
+
+# Specify the folder name
+folder_name = "models\SKC_model_new"
+
+# Construct the full path to the folder
+folder_path = os.path.join(current_dir, folder_name)
+
 def is_web_link(text):
     pattern = r'^https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+'
     return re.match(pattern, text) is not None
@@ -107,7 +118,7 @@ class knowledge_base_NLP():
         #ner_weapons = spacy.load(model_path)
 
         # loading the pre-trained model that detects weapon-type entity labels
-        ner_weapons = spacy.load("models\SKC_model_new")
+        ner_weapons = spacy.load(folder_path)
 
         base_model.add_pipe("ner", name="ner_weapons", source=ner_weapons)
 
