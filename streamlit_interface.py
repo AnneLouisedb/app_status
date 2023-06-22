@@ -4,7 +4,7 @@ import io
 from spacy.tokens import Doc, Span
 from spacy.language import Language
 from spacy import displacy
-import neuralcoref
+#import neuralcoref
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 
 import re
@@ -153,7 +153,7 @@ class knowledge_base_NLP():
         coref = spacy.load('en_core_web_sm', disable=['ner', 'tagger', 'parser', 'attribute_ruler', 'lemmatizer'])
 
         # Add neuralcoref to the pipeline
-        neuralcoref.add_to_pipe(coref)
+        #neuralcoref.add_to_pipe(coref)
         
         #coref.add_pipe("xx_coref", config={"chunk_size": 2500, "chunk_overlap": 2, "device": self.DEVICE})
         
@@ -164,8 +164,8 @@ class knowledge_base_NLP():
             raw_text = self.raw_text
             
         # Resolve coreferences and get the resolved text
-        coref_text = coref(raw_text)._.coref_resolved
-        #coref_text = raw_text
+        #coref_text = coref(raw_text)._.coref_resolved
+        coref_text = raw_text
 
         nlp = self.pretrained_model()  # Load the pretrained model
 
