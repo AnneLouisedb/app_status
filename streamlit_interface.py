@@ -396,8 +396,7 @@ class knowledge_base_NLP():
         df['Country_Location'] = df['Country_Location'].apply(lambda x: list(x) if x is not None else None)
         df = df.explode('Country_Location')  #- this does not work because we need to explode a set type
         df['weapons'] = 5 #CHANGE THIS, this is a text value
-        print(df)
-    
+        
         figmap = px.choropleth_mapbox(
                     df,
                     locations="ISO_A3", # Based on this ID!
@@ -412,7 +411,7 @@ class knowledge_base_NLP():
                     mapbox_style="carto-positron",
                     center={"lat": 54.5260, "lon": 15.2551}
                 )
-        return figmap
+        return figmap, dataframe
     
 
 
@@ -438,7 +437,8 @@ def app():
     st.write(df_attributes)
     
     # plottinga map
-    figmap = KB.chloropleth_weapon_locations()
+    figmap, dataframe = KB.chloropleth_weapon_locations()
+    st.table(dataframe)
     st.plotly_chart(figmap, width=6000)
 
     # Add a button to download the dataframe as an Excel file
