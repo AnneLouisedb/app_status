@@ -351,7 +351,7 @@ class knowledge_base_NLP():
 
     def chloropleth_weapon_locations(self):
         
-        df = self.extracted_attributes.copy()
+        df = self.extract_attributes
         df['ISO_A3'] = None
         df['Country_Location'] = None
         
