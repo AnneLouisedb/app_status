@@ -437,6 +437,10 @@ def app():
     st.subheader("extracted attributes")
     df_attributes = KB.extract_attributes
     st.write(df_attributes)
+    
+    # plottinga map
+    figmap = KB.chloropleth_weapon_locations()
+    st.plotly_chart(figmap, width=6000)
 
     # Add a button to download the dataframe as an Excel file
     if st.button("Download Relations DataFrame"):
@@ -452,6 +456,7 @@ def app():
             df_attributes.to_excel(writer, index=False)
         output.seek(0)
         st.download_button('Download the Attributes DataFrame', data=output, file_name='attributes.xlsx', mime='application/vnd.ms-excel')
+    
 
 # ...
 # run
