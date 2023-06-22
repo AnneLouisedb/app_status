@@ -432,21 +432,21 @@ def app():
     df_attributes = KB.extract_attributes
     st.write(df_attributes)
 
-    output = io.BytesIO()
-    writer = pd.ExcelWriter(output, engine = 'xlsxwriter')
-    
     # Add a button to download the dataframe as an Excel file
     if st.button("Download Relations DataFrame"):
-        df_relations.to_excel(writer, index=False)
-        writer.save()
+        output = io.BytesIO()
+        with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
+            df_relations.to_excel(writer, index=False)
         output.seek(0)
-        st.dowload_button('Download the Relations Dataframe', file_name = 'relations.xlsx', mime = 'application/vnd.ms-excel')
-        
+        st.download_button('Download the Relations DataFrame', data=output, file_name='relations.xlsx', mime='application/vnd.ms-excel')
+
     if st.button("Download Attributes DataFrame"):
-        df_attributes.to_excel(writer, index=False)
-        writer.save()
+        output = io.BytesIO()
+        with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
+            df_attributes.to_excel(writer, index=False)
         output.seek(0)
-        st.dowload_button('Download the Attributes Dataframe', file_name = "attributes.xlsx", mime = 'application/vnd.ms-excel')
-        
+        st.download_button('Download the Attributes DataFrame', data=output, file_name='attributes.xlsx', mime='application/vnd.ms-excel')
+
+# ...
 # run
 app()
