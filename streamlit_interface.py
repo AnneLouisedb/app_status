@@ -408,7 +408,7 @@ class knowledge_base_NLP():
                     hover_data=['weapons'],
                     #animation_frame="date",
                     range_color=[20, 10],
-                    title="Weapons Timeline Pilot",
+                    title="Demo plotting weapons on map",
                     mapbox_style="carto-positron",
                     center={"lat": 54.5260, "lon": 15.2551}
                 )
