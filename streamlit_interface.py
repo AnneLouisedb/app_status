@@ -1,5 +1,6 @@
 # import external packages
 import spacy
+import io
 from spacy.tokens import Doc, Span
 from spacy.language import Language
 from spacy import displacy
