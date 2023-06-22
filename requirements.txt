@@ -9,4 +9,5 @@ country_converter
 geopy
 newspaper3k
 streamlit
+crosslingual-coreference
 
