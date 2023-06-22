@@ -23,7 +23,7 @@ import os
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Specify the folder name
-folder_name = "models\SKC_model_new"
+folder_name = "models/SKC_model_new"
 
 # Construct the full path to the folder
 folder_path = os.path.join(current_dir, folder_name)
