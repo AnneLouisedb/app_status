@@ -125,6 +125,7 @@ class knowledge_base_NLP():
         ner_weapons = spacy.load(folder_path)
 
         base_model.add_pipe("ner", name="ner_weapons", source=ner_weapons)
+        base_model.add_pipe("set_custom_norp", last=True)
 
         return base_model
     
