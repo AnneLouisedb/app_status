@@ -246,11 +246,29 @@ class knowledge_base_NLP():
                 sentence = self.coref_docs[sentence_id]
                 for token in sentence:
                     if token.ent_type_ == "Weapons":
+                        weapon_info = []
+                
+                        # Extract adjectives
                         adjectives = [child.text for child in token.children if child.pos_ == "ADJ"]
-                        if adjectives:
-                            weapon_adjectives.append((adjectives, token.text))
-                            # Write the list of adjectives to the 'weapon_adj' column in the corresponding row
-                            dtf.at[index, 'weapon_adj'] = adjectives
+                        weapon_info.extend(adjectives)
+                
+                        # Extract other modifiers or phrases related to weapons
+                        for child in token.children:
+                            if child.dep_ == "amod" or child.dep_ == "compound" or child.dep_ == "nmod":
+                                weapon_info.append(child.text)
+                        
+                        if weapon_info:
+                            weapon_descriptions.append((weapon_info, token.text))
+                            # Write the list of weapon descriptions to the 'weapon_adj' column in the corresponding row
+                            dtf.at[index, 'weapon_adj'] = weapon_info
+
+            
+                    # if token.ent_type_ == "Weapons":
+                    #     adjectives = [child.text for child in token.children if child.pos_ == "ADJ"]
+                    #     if adjectives:
+                    #         weapon_adjectives.append((adjectives, token.text))
+                    #         # Write the list of adjectives to the 'weapon_adj' column in the corresponding row
+                    #         dtf.at[index, 'weapon_adj'] = adjectives
 
         return dtf
     
