@@ -135,7 +135,7 @@ class knowledge_base_NLP():
         definite noun phrases, and other referring expressions to their corresponding entities.
         """
         coref = spacy.load('en_core_web_sm', disable=['ner', 'tagger', 'parser', 'attribute_ruler', 'lemmatizer'])
-        coref.add_pipe("xx_coref", config={"chunk_size": 2500, "chunk_overlap": 2, "device": self.DEVICE})
+        #coref.add_pipe("xx_coref", config={"chunk_size": 2500, "chunk_overlap": 2, "device": self.DEVICE})
         
         # check if the input text is a web link
         if is_web_link(self.raw_text):
