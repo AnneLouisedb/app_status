@@ -19,14 +19,16 @@ import streamlit as st
 
 import os
 
+
 # Get the directory path of the current script
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
-# Specify the relative path to the desired folder
-relative_path = "../models/SKC_model_new"
+# Specify the folder name
+folder_name = "models"
 
 # Construct the full path to the folder
-folder_path = os.path.normpath(os.path.join(current_dir, relative_path))
+folder_path = os.path.join(current_dir, folder_name)
+
 
 
 def is_web_link(text):
