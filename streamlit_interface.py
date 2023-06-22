@@ -30,7 +30,8 @@ folder_name = "models/SKC_model_new"
 # Construct the full path to the folder
 folder_path = os.path.join(current_dir, folder_name)
 
-
+def convert_to_iso3(location):
+    return cc.convert(names=str(location), to='ISO3')
 
 def is_web_link(text):
     pattern = r'^https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+'
@@ -391,11 +392,11 @@ class knowledge_base_NLP():
             row['Country_Location'] = countries
             row['ISO_A3'] = iso3_codes
             
-
         df = df.explode('ISO_A3')  
         df['Country_Location'] = df['Country_Location'].apply(lambda x: list(x) if x is not None else None)
         df = df.explode('Country_Location')  #- this does not work because we need to explode a set type
         df['weapons'] = 5 #CHANGE THIS, this is a text value
+        df['ISO_A3'] = df['locations'].apply(lambda x: convert_to_iso3(x))
         st.write(df)
         figmap = px.choropleth_mapbox(
                     df,
