@@ -438,7 +438,7 @@ def app():
     
     # plottinga map
     figmap, dataframe = KB.chloropleth_weapon_locations()
-    st.table(dataframe)
+    st.write(dataframe)
     st.plotly_chart(figmap, width=6000)
 
     # Add a button to download the dataframe as an Excel file
